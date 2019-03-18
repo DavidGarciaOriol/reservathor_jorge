@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form id="submit" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -22,6 +22,8 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                            <div id="divErrors">
                             </div>
                         </div>
 
@@ -37,6 +39,8 @@
                                     </span>
                                 @endif
                             </div>
+                            <div id="divErrors">
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -51,6 +55,8 @@
                                     </span>
                                 @endif
                             </div>
+                            <div id="divErrors">
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -58,6 +64,14 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                            <div id="divErrors">
+                            </div>
+                        </div>
+
+                        <div class="form-group column"> 
+                            <input id="terms" type="checkbox" required> He leído y acepto los términos y condiciones.
+                            <div id="divErrors">
                             </div>
                         </div>
 
@@ -69,6 +83,8 @@
                             </div>
                         </div>
                     </form>
+
+
                 </div>
             </div>
         </div>

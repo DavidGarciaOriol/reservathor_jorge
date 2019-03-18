@@ -48797,8 +48797,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -48869,17 +48869,6 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nTypeError: Cannot read property 'parseComponent' of undefined\n    at parse (/home/nndavid/Sites/reservator/node_modules/@vue/component-compiler-utils/dist/parse.js:14:23)\n    at Object.module.exports (/home/nndavid/Sites/reservator/node_modules/vue-loader/lib/index.js:67:22)");
-
-/***/ }),
-
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -48891,15 +48880,27 @@ throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.j
 
 /***/ }),
 
+/***/ "./resources/sass/validations.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/validations.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!***********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/validations.scss ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nndavid/Sites/reservator/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nndavid/Sites/reservator/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/nndavid/Sites/reservathorjorge/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/nndavid/Sites/reservathorjorge/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/nndavid/Sites/reservathorjorge/resources/sass/validations.scss */"./resources/sass/validations.scss");
 
 
 /***/ })
