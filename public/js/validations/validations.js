@@ -180,8 +180,9 @@ function validateName() {
   var esCorrecto = false;
   var errorsName = [];
   $(divErrors).empty();
+  var expr = /^[A-Za-z0-9áéíóúü]{3,}$/g;
 
-  if (!name.match(/^(.*[A_Za_z0_9áéíóúü]){3}/)) {
+  if (!expr.test(name.val())) {
     $(name).removeClass('is-valid');
     $(name).addClass('is-invalid');
     errorsName.push('El nombre ha de tener tres o más carácteres.');
@@ -200,7 +201,7 @@ function validateEmail() {
   var errorsEmail = [];
   $(divErrors).empty();
 
-  if (!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+  if (!email.val().match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
     $(email).removeClass('is-valid');
     $(email).addClass('is-invalid');
     errorsEmail.push('Ha de introducir un email válido.');
@@ -219,7 +220,7 @@ function validateGender() {
   var errorsGender = [];
   $(divErrors).empty();
 
-  if (!gender === "") {
+  if (gender.val() === "") {
     $(gender).removeClass('is-valid');
     $(gender).addClass('is-invalid');
     errorsGender.push('Debe seleccinar un género válido.');
@@ -238,7 +239,7 @@ function validatePassword() {
   var errorsPassword = [];
   $(divErrors).empty();
 
-  if (!password.length >= 8) {
+  if (!password.val().length >= 8) {
     $(password).removeClass('is-valid');
     $(password).addClass('is-invalid');
     errorsPassword.push('La password debe tener 8 o más caracteres.');
@@ -257,7 +258,7 @@ function validatePasswordConfirm() {
   var errorsPasswordConfirm = [];
   $(divErrors).empty();
 
-  if (!passwordConfirm === password) {
+  if (!passwordConfirm.val() === password.val()) {
     $(passwordConfirm).removeClass('is-valid');
     $(passwordConfirm).addClass('is-invalid');
     errorsPasswordConfirm.push('Las passwords no coinciden.');
@@ -276,7 +277,7 @@ function validateTerms() {
   var errorsTerms = [];
   $(divErrors).empty();
 
-  if (!$(terms).prop("checked")) {
+  if (!$(terms).is(":checked")) {
     $(terms).removeClass('is-valid');
     $(terms).addClass('is-invalid');
     errorsTerms.push('Debe aceptar los términos y condiciones de uso.');
@@ -294,9 +295,9 @@ function validateTerms() {
 ============================================= */
 
 
-function addErrorsToErrorsDiv(errors) {
+function addErrorsToErrorsDiv(type, errors) {
   errors.forEach(function (error) {
-    $(divErrors).appendChild("".concat(error));
+    divErrors.appendChild("".concat(error));
   });
 }
 

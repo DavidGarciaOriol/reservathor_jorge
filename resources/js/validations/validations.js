@@ -23,7 +23,9 @@ let divErrors = $('#divErrors');
 $(function(){
 
     asociarEventos();
+
     validateAll();
+
 });
 
 
@@ -118,8 +120,8 @@ function validateName(){
     let errorsName = [];
     
     $(divErrors).empty();
-
-    if(!name.match(/^(.*[A_Za_z0_9áéíóúü]){3}/)){
+    let expr = /^[A-Za-z0-9áéíóúü]{3,}$/g
+    if(!expr.test(name.val())){
 
         $(name).removeClass('is-valid');
         $(name).addClass('is-invalid');
@@ -146,7 +148,7 @@ function validateEmail(){
 
     $(divErrors).empty();
 
-    if(!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+    if(!email.val().match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
                 
         $(email).removeClass('is-valid');
         $(email).addClass('is-invalid');
@@ -173,7 +175,7 @@ function validateGender(){
 
     $(divErrors).empty();
 
-    if(!gender === ""){
+    if(gender.val() === ""){
 
         $(gender).removeClass('is-valid');
         $(gender).addClass('is-invalid');
@@ -201,7 +203,7 @@ function validatePassword(){
 
     $(divErrors).empty();
 
-    if(!password.length >= 8){
+    if(!password.val().length >= 8){
                 
         $(password).removeClass('is-valid');
         $(password).addClass('is-invalid');
@@ -228,7 +230,7 @@ function validatePasswordConfirm(){
 
     $(divErrors).empty();
 
-    if(!passwordConfirm === password){
+    if(!passwordConfirm.val() === password.val()){
                 
         $(passwordConfirm).removeClass('is-valid');
         $(passwordConfirm).addClass('is-invalid');
@@ -254,7 +256,7 @@ function validateTerms(){
 
     $(divErrors).empty();
 
-    if(!$(terms).prop("checked")){
+    if(!$(terms).is(":checked")){
                 
         $(terms).removeClass('is-valid');
         $(terms).addClass('is-invalid');
@@ -280,8 +282,8 @@ function validateTerms(){
           [[[[[[[[[[ERRORS]]]]]]]]]]
 ============================================= */
 
-function addErrorsToErrorsDiv(errors){
+function addErrorsToErrorsDiv(type, errors){
     errors.forEach(function(error){
-        $(divErrors).appendChild(`${error}`);
+        divErrors.appendChild(`${error}`);
     });
 }
