@@ -7,6 +7,10 @@
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
+                <div id="errorsAlert" class="alert alert-danger fade"  role="alert">
+                There's an error in the Formulary.
+                </div>
+
                 <div class="card-body">
                     <form id="submit" method="POST" action="{{ route('register') }}">
                         @csrf
@@ -39,6 +43,19 @@
                                     </span>
                                 @endif
                             </div>
+                            <div id="divErrors">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right"> {{ __('Gender') }} </label>
+
+                            <select id="gender">
+                            <option disabled selected value> -- select an option -- </option>
+                                <option value="female"> Female </option>
+                                <option value="male"> Male </option>
+                                <option value="other"> Other </option>
+                            </select>
                             <div id="divErrors">
                             </div>
                         </div>

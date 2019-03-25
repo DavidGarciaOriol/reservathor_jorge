@@ -93,110 +93,211 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(function () {
-  validateAll();
-});
-
-function validateAll() {
-  validateName();
-  validateEmail();
-  validatePassword();
-  validatePasswordConfirm();
-}
-
-var errors = [];
+/* ==========================================
+        [[[[[[[[[[VARIABLES]]]]]]]]]]
+============================================= */
 var name = $('#name');
 var email = $('#email');
+var gender = $('#gender');
 var password = $('#password');
 var passwordConfirm = $('#password-confirm');
 var submit = $('#submit');
+var terms = $('#terms');
 var divErrors = $('#divErrors');
+/* ==========================================
+            [[[[[[[[[[DOM]]]]]]]]]]
+============================================= */
+
+$(function () {
+  asociarEventos();
+  validateAll();
+});
+/* ==========================================
+        [[[[[[[[[[ASSOCIATION]]]]]]]]]]
+============================================= */
+
+function asociarEventos() {
+  $(name).change(function () {
+    validateName();
+  });
+  $(email).change(function () {
+    validateEmail();
+  });
+  $(gender).change(function () {
+    validateGender();
+  });
+  $(password).change(function () {
+    validatePassword();
+  });
+  $(passwordConfirm).change(function () {
+    validatePasswordConfirm();
+  });
+  $(terms).change(function () {
+    validateTerms();
+  });
+}
+/* ==========================================
+        [[[[[[[[[[VALIDATION]]]]]]]]]]
+============================================= */
+
+
+function validateAll() {
+  var esNombreValido = validateName();
+  var esEmailValido = validateEmail();
+  var esGenderValido = validateGender();
+  var esPasswordValido = validatePassword();
+  var esPasswordConfirmValido = validatePasswordConfirm();
+  var esTermsValido = validateTerms();
+
+  if (esNombreValido && esEmailValido && esGenderValido && esPasswordValido && esPasswordConfirmValido && esTermsValido) {
+    $('#errorsAlert').removeClass('show');
+    $('#errorsAlert').addClass('fade');
+    $("#submit").submit();
+  } else {
+    $('#errorsAlert').removeClass('fade');
+    $('#errorsAlert').addClass('show');
+  }
+}
+/* ==========================================
+          [[[[[[[[[[SUBMIT]]]]]]]]]
+============================================= */
+
 
 function submitForm() {
   $(submit).addEventListener(function (event) {
     event.preventDefault();
     $(submit).onClick(function () {
       validateAll();
-
-      if (!errors == 'undefined') {} else {}
     });
   });
 }
+/* ==========================================
+        [[[[[[[[[[FUNCTIONS]]]]]]]]]]
+============================================= */
+
 
 function validateName() {
-  $(name).addEventListener(function (event) {
-    $(name).change(function () {
-      $(divErrors).empty();
+  var esCorrecto = false;
+  var errorsName = [];
+  $(divErrors).empty();
 
-      if (!name.match(/^(.*[A_Za_z0_9áéíóúü]){3}/)) {
-        $(name).removeClass('is-valid');
-        $(name).addClass('is-invalid');
-        errors.push('El nombre ha de tener tres o más carácteres.');
-        addErrorsToErrorsDiv();
-      } else {
-        $(name).removeClass('is-invalid');
-        $(name).addClass('is-valid');
-      }
-    });
-  });
+  if (!name.match(/^(.*[A_Za_z0_9áéíóúü]){3}/)) {
+    $(name).removeClass('is-valid');
+    $(name).addClass('is-invalid');
+    errorsName.push('El nombre ha de tener tres o más carácteres.');
+    addErrorsToErrorsDiv(errorsName);
+  } else {
+    esCorrecto = true;
+    $(name).removeClass('is-invalid');
+    $(name).addClass('is-valid');
+  }
+
+  return esCorrecto;
 }
 
 function validateEmail() {
-  $(email).addEventListener(function (event) {
-    $(email).change(function () {
-      $(divErrors).empty();
+  var esCorrecto = false;
+  var errorsEmail = [];
+  $(divErrors).empty();
 
-      if (!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-        $(email).removeClass('is-valid');
-        $(email).addClass('is-invalid');
-        errors.push('El email no es válido.');
-        addErrorsToErrorsDiv();
-      } else {
-        $(email).removeClass('is-invalid');
-        $(email).addClass('is-valid');
-      }
-    });
-  });
+  if (!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+    $(email).removeClass('is-valid');
+    $(email).addClass('is-invalid');
+    errorsEmail.push('Ha de introducir un email válido.');
+    addErrorsToErrorsDiv(errorsEmail);
+  } else {
+    esCorrecto = true;
+    $(email).removeClass('is-invalid');
+    $(email).addClass('is-valid');
+  }
+
+  return esCorrecto;
+}
+
+function validateGender() {
+  var esCorrecto = false;
+  var errorsGender = [];
+  $(divErrors).empty();
+
+  if (!gender === "") {
+    $(gender).removeClass('is-valid');
+    $(gender).addClass('is-invalid');
+    errorsGender.push('Debe seleccinar un género válido.');
+    addErrorsToErrorsDiv(errorsGender);
+  } else {
+    esCorrecto = true;
+    $(gender).removeClass('is-invalid');
+    $(gender).addClass('is-valid');
+  }
+
+  return esCorrecto;
 }
 
 function validatePassword() {
-  $(password).addEventListener(function (event) {
-    $(password).change(function () {
-      $(divErrors).empty();
+  var esCorrecto = false;
+  var errorsPassword = [];
+  $(divErrors).empty();
 
-      if (!password.length >= 8) {
-        $(password).removeClass('is-valid');
-        $(password).addClass('is-invalid');
-        errors.push('La password debe 8 o más caracteres.');
-        addErrorsToErrorsDiv();
-      } else {
-        $(password).removeClass('is-invalid');
-        $(password).addClass('is-valid');
-      }
-    });
-  });
+  if (!password.length >= 8) {
+    $(password).removeClass('is-valid');
+    $(password).addClass('is-invalid');
+    errorsPassword.push('La password debe tener 8 o más caracteres.');
+    addErrorsToErrorsDiv(errorsPassword);
+  } else {
+    esCorrecto = true;
+    $(password).removeClass('is-invalid');
+    $(password).addClass('is-valid');
+  }
+
+  return esCorrecto;
 }
 
 function validatePasswordConfirm() {
-  $(passwordConfirm).addEventListener(function (event) {
-    $(passwordConfirm).change(function () {
-      $(divErrors).empty();
+  var esCorrecto = false;
+  var errorsPasswordConfirm = [];
+  $(divErrors).empty();
 
-      if (!passwordConfirm === password) {
-        $(passwordConfirm).removeClass('is-valid');
-        $(passwordConfirm).addClass('is-invalid');
-        errors.push('Las passwords no coinciden.');
-        addErrorsToErrorsDiv();
-      } else {
-        $(passwordConfirm).removeClass('is-invalid');
-        $(passwordConfirm).addClass('is-valid');
-      }
-    });
-  });
+  if (!passwordConfirm === password) {
+    $(passwordConfirm).removeClass('is-valid');
+    $(passwordConfirm).addClass('is-invalid');
+    errorsPasswordConfirm.push('Las passwords no coinciden.');
+    addErrorsToErrorsDiv(errorsPasswordConfirm);
+  } else {
+    esCorrecto = true;
+    $(passwordConfirm).removeClass('is-invalid');
+    $(passwordConfirm).addClass('is-valid');
+  }
+
+  return esCorrecto;
 }
 
-function addErrorsToErrorsDiv() {
-  $(divErrors).appendChild("".concat(errors));
+function validateTerms() {
+  var isChecked = false;
+  var errorsTerms = [];
+  $(divErrors).empty();
+
+  if (!$(terms).prop("checked")) {
+    $(terms).removeClass('is-valid');
+    $(terms).addClass('is-invalid');
+    errorsTerms.push('Debe aceptar los términos y condiciones de uso.');
+    addErrorsToErrorsDiv(errorsTerms);
+  } else {
+    isChecked = true;
+    $(terms).removeClass('is-invalid');
+    $(terms).addClass('is-valid');
+  }
+
+  return isChecked;
+}
+/* ==========================================
+          [[[[[[[[[[ERRORS]]]]]]]]]]
+============================================= */
+
+
+function addErrorsToErrorsDiv(errors) {
+  errors.forEach(function (error) {
+    $(divErrors).appendChild("".concat(error));
+  });
 }
 
 /***/ }),
