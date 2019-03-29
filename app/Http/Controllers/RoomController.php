@@ -138,6 +138,16 @@ class RoomController extends Controller
 
     $room->delete();
     return redirect('/rooms')
-            ->with('message', "The room '{$room->title}' has been deleted.");
+    ->with('message', "The room '{$room->title}' has been deleted.");
+  }
+
+    public function createAjax(RoomRequest $request){
+
+        sleep(5);
+        return 'OBJETO CREADO';
+
     }
+
 }
+
+

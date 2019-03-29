@@ -103,7 +103,12 @@ var password = $('#password');
 var passwordConfirm = $('#password-confirm');
 var submit = $('#submit');
 var terms = $('#terms');
-var divErrors = $('#divErrors');
+var divErrorsName = $('#divErrorsName');
+var divErrorsEmail = $('#divErrorsEmail');
+var divErrorsGender = $('#divErrorsGender');
+var divErrorsPassword = $('#divErrorsPassword');
+var divErrorsPasswordConfirm = $('#divErrorsPasswordCOnfirm');
+var divErrorsTerms = $('#ivErrorsTerms');
 /* ==========================================
             [[[[[[[[[[DOM]]]]]]]]]]
 ============================================= */
@@ -179,14 +184,14 @@ function submitForm() {
 function validateName() {
   var esCorrecto = false;
   var errorsName = [];
-  $(divErrors).empty();
-  var expr = /^[A-Za-z0-9áéíóúü]{3,}$/g;
+  $(divErrorsName).empty();
+  var regex = /^[A-Za-z0-9áéíóúü]{3,}$/g;
 
-  if (!expr.test(name.val())) {
+  if (!regex.test(name.val())) {
     $(name).removeClass('is-valid');
     $(name).addClass('is-invalid');
     errorsName.push('El nombre ha de tener tres o más carácteres.');
-    addErrorsToErrorsDiv(errorsName);
+    addErrorsToErrorsDiv('Name', errorsName);
   } else {
     esCorrecto = true;
     $(name).removeClass('is-invalid');
@@ -199,13 +204,14 @@ function validateName() {
 function validateEmail() {
   var esCorrecto = false;
   var errorsEmail = [];
-  $(divErrors).empty();
+  $(divErrorsEmail).empty();
+  var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  if (!email.val().match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+  if (!regex.test(email.val())) {
     $(email).removeClass('is-valid');
     $(email).addClass('is-invalid');
     errorsEmail.push('Ha de introducir un email válido.');
-    addErrorsToErrorsDiv(errorsEmail);
+    addErrorsToErrorsDiv('Email', errorsEmail);
   } else {
     esCorrecto = true;
     $(email).removeClass('is-invalid');

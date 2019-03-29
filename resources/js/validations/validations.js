@@ -11,10 +11,12 @@ let passwordConfirm = $('#password-confirm');
 let submit = $('#submit');
 let terms = $('#terms');
 
-let divErrors = $('#divErrors');
-
-
-
+let divErrorsName = $('#divErrorsName');
+let divErrorsEmail = $('#divErrorsEmail');
+let divErrorsGender = $('#divErrorsGender');
+let divErrorsPassword = $('#divErrorsPassword');
+let divErrorsPasswordConfirm = $('#divErrorsPasswordCOnfirm');
+let divErrorsTerms = $('#ivErrorsTerms');
 
 /* ==========================================
             [[[[[[[[[[DOM]]]]]]]]]]
@@ -119,15 +121,15 @@ function validateName(){
     let esCorrecto = false;
     let errorsName = [];
     
-    $(divErrors).empty();
-    let expr = /^[A-Za-z0-9áéíóúü]{3,}$/g
-    if(!expr.test(name.val())){
+    $(divErrorsName).empty();
+    let regex = /^[A-Za-z0-9áéíóúü]{3,}$/g
+    if(!regex.test(name.val())){
 
         $(name).removeClass('is-valid');
         $(name).addClass('is-invalid');
 
         errorsName.push('El nombre ha de tener tres o más carácteres.');
-        addErrorsToErrorsDiv(errorsName);
+        addErrorsToErrorsDiv('Name', errorsName);
 
     } else {
 
@@ -146,15 +148,15 @@ function validateEmail(){
     let esCorrecto = false;
     let errorsEmail = [];
 
-    $(divErrors).empty();
-
-    if(!email.val().match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+    $(divErrorsEmail).empty();
+    let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!regex.test(email.val())){
                 
         $(email).removeClass('is-valid');
         $(email).addClass('is-invalid');
                 
         errorsEmail.push('Ha de introducir un email válido.');
-        addErrorsToErrorsDiv(errorsEmail);
+        addErrorsToErrorsDiv('Email', errorsEmail);
 
     } else {
 

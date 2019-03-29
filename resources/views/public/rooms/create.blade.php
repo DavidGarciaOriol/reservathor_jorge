@@ -4,7 +4,7 @@
 
 @section('content')
 <h1>Create New Room</h1>
-<form action="/rooms" method="post" enctype="multipart/form-data" novalidate>
+<form id="formCreate" action="/rooms" method="post" enctype="multipart/form-data" novalidate>
 
     @csrf
 
@@ -13,3 +13,6 @@
     <button type="submit" class="btn btn-primary">Save Room</button>
 </form>
 @endsection
+@push('scripts')
+    <script src="{{ mix('js/elements/elements.js') }}" defer></script>
+@endpush
