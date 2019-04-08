@@ -93,7 +93,115 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/nndavid/Sites/reservathorjorge/resources/js/elements/elements.js: Invalid left-hand side in assignment expression (14:8)\n\n\u001b[0m \u001b[90m 12 | \u001b[39m    $(\u001b[32m'button[data-acction=\"delete\"]'\u001b[39m)\u001b[33m.\u001b[39mclick(\u001b[36mfunction\u001b[39m(event){\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m        event\u001b[33m.\u001b[39mpreventDefault()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 | \u001b[39m        $(\u001b[32m'#sureDeleteButton'\u001b[39m)\u001b[33m.\u001b[39mattr(\u001b[32m'data-id-room'\u001b[39m) \u001b[33m=\u001b[39m $(event\u001b[33m.\u001b[39mtarget)\u001b[33m.\u001b[39mattr(\u001b[32m'data-id-room'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m        showDeleteModal()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 | \u001b[39m    })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 17 | \u001b[39m\u001b[0m\n    at Parser.raise (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:3831:17)\n    at Parser.toAssignable (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5296:18)\n    at Parser.parseMaybeAssign (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5667:47)\n    at Parser.parseExpression (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5595:23)\n    at Parser.parseStatementContent (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7378:23)\n    at Parser.parseStatement (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7243:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7810:25)\n    at Parser.parseBlockBody (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7797:10)\n    at Parser.parseBlock (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7786:10)\n    at Parser.parseFunctionBody (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:6876:24)\n    at Parser.parseFunctionBodyAndFinish (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:6860:10)\n    at withTopicForbiddingContext (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7945:12)\n    at Parser.withTopicForbiddingContext (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7150:14)\n    at Parser.parseFunction (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7944:10)\n    at Parser.parseFunctionExpression (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:6326:17)\n    at Parser.parseExprAtom (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:6232:21)\n    at Parser.parseExprSubscripts (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5862:23)\n    at Parser.parseMaybeUnary (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5842:21)\n    at Parser.parseExprOps (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5729:23)\n    at Parser.parseMaybeConditional (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5702:23)\n    at Parser.parseMaybeAssign (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5647:21)\n    at Parser.parseExprListItem (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:6940:18)\n    at Parser.parseCallExpressionArguments (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:6070:22)\n    at Parser.parseSubscript (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5965:29)\n    at Parser.parseSubscripts (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5882:19)\n    at Parser.parseExprSubscripts (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5872:17)\n    at Parser.parseMaybeUnary (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5842:21)\n    at Parser.parseExprOps (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5729:23)\n    at Parser.parseMaybeConditional (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5702:23)\n    at Parser.parseMaybeAssign (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5647:21)\n    at Parser.parseExpression (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:5595:23)\n    at Parser.parseStatementContent (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7378:23)\n    at Parser.parseStatement (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7243:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7810:25)\n    at Parser.parseBlockBody (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7797:10)\n    at Parser.parseBlock (/home/nndavid/Sites/reservathorjorge/node_modules/@babel/parser/lib/index.js:7786:10)");
+$(function () {
+  $('#formCreate').submit(function (event) {
+    event.preventDefault();
+    createRoomAjax();
+  });
+  $('#formEdit').submit(function (event) {
+    event.preventDefault();
+    editRoomAjax();
+  });
+  $('#theModal').on('show.bs.modal', function (event) {
+    $('#theSpinner').addClass('theSpinner');
+  });
+  $('button[data-action="delete"]').click(function (event) {
+    event.preventDefault();
+    $('#sureDeleteButton').attr('data-id-room', $(event.target).attr('data-id-room'));
+    showDeleteModal();
+  });
+  $('#sureDeleteButton').click(function (event) {
+    event.preventDefault();
+    deleteRoomAjax();
+  });
+  $('button[data-action="show"]').click(function (event) {
+    event.preventDefault();
+    showRoomAjax();
+  });
+});
+
+function createRoomAjax() {
+  var createForm = $('#formCreate').serialize();
+  showModal();
+  axios.post('/rooms/createAjax', createForm).then(function (response) {
+    showSuccessModal('Create'); // $('#formCreate').trigger('reset');
+
+    document.getElementById('formCreate').reset();
+  }).catch(function (error) {
+    console.log(error);
+    showErrorModal();
+  }).then(function (response) {
+    hideModal();
+  });
+}
+
+function editRoomAjax() {
+  var idRoomEdit = $('#editButton').attr('data-id-room');
+  var editForm = $('#formEdit').serialize();
+  showModal();
+  axios.put("/rooms/".concat(idRoomEdit, "/edit/roomEdit"), editForm).then(function (response) {
+    showSuccessModal('Edit');
+  }).catch(function (error) {
+    console.log(error);
+    showErrorModal();
+  }).then(function (response) {
+    hideModal();
+  });
+}
+
+function deleteRoomAjax() {
+  var idRoom = $('#sureDeleteButton').attr('data-id-room');
+  showModal();
+  axios.delete("rooms/".concat(idRoom, "/roomDelete")).then(function (response) {
+    showElementDeletedModal();
+    var room = $("div[data-id-room='".concat(idRoom, "']"));
+    room.hide(2000, function () {
+      room.remove();
+    });
+  }).catch(function (error) {
+    showErrorModal();
+  }).then(function (response) {
+    hideModal();
+  });
+}
+
+function showRoomAjax() {
+  var idRoom = $('button[data-action="show"]').attr('data-id-room');
+  showModal();
+  axios.get("rooms/".concat(idRoom, "/roomShow")).then(function (response) {
+    $('#showModalBody').html(response.data);
+    $('#showElementModal').modal('show');
+  }).catch(function (error) {
+    showErrorModal();
+  }).then(function (response) {
+    hideModal();
+  });
+}
+
+function showModal() {
+  $('#theModal').modal('show');
+}
+
+function hideModal() {
+  $('#theSpinner').removeClass('theSpinner');
+  $('#theModal').modal('hide');
+}
+
+function showSuccessModal(type) {
+  $("#successModal".concat(type)).modal('show');
+}
+
+function showErrorModal() {
+  $('#errorModal').modal('show');
+}
+
+function showDeleteModal() {
+  $('#deleteModal').modal('show');
+}
+
+function showElementDeletedModal() {
+  $('#elementDeletedModal').modal('show');
+}
 
 /***/ }),
 

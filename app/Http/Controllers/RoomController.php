@@ -142,15 +142,67 @@ class RoomController extends Controller
   }
 
     public function createAjax(RoomRequest $request){
+    
         sleep(3);
+
+        $portrait = $request->file('portrait');
+
+        $room = Room::create([
+            'user_id' => $request->user()->id,
+            'title' => request('title'),
+            'slug' => str_slug(request('title'), "-"),
+            'address' => request('address'),
+            'type_id' => request('type'),
+            'prize' => request('prize'),
+            'description' => request('description'),
+            'portrait' => ($portrait?$portrait->store('portraits','public'):null),
+        ]);
     }
 
-    public function editAjax(RoomRequest $request){
+    public function editAjax($idRoom, RoomRequest $request){
+
         sleep(3);
+
+        $portrait = $request->file('portrait');
+
+        if( $portrait && $room->portrait ){
+            Storage::disk('public')->delete($room->portrait);
+        }
+
+        $room = Room::where('id', $idRoom)->firstOrFail();
+
+        $room->update([
+            'title' => request('title'),
+            'type' => request('type'),
+            'slug' => str_slug(request('title'), "-"),
+            'address' => request('address'),
+            'prize' => request('prize'),
+            'description' => request('description'),
+            'portrait' => ($portrait?$portrait->store('portraits','public'):$room->portrait),
+        ]);
+
+        
     }
 
-    public function deleteAjax(){
+    public function deleteAjax($roomId){
+
         sleep(3);
+        
+        $room = Room::where('id', $roomId)->firstOrFail();
+
+        if( $room->portrait ){
+            Storage::disk('public')->delete($room->portrait);
+        }
+
+        $room->delete();
+    }
+
+    public function showAjax($roomId){
+
+        sleep(3);
+    
+        $room = Room::where('id', $roomId)->firstOrFail();
+        return view('public.rooms.partials.partialShow', ['room' => $room]);
     }
 
 }

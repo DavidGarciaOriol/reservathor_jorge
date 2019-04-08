@@ -4,28 +4,23 @@
 
 @section('content')
 
-<div class="row">
-    <h2>{{ $room->title }}</h2>
+<div id="modalContentShow" class="row">
 
-    @if( $room->portrait )
-        <div class="col-3">
-                <img class="img-fluid" src="http://reservathor.test/storage/{{ $room->portrait }}" alt="">
-        </div>
-    @endif
+@include('public.rooms.partials.partialShow')
 
-    <div class="col">
+@include('public.rooms.partials.buttons')
+    <a href="/reservations/create" class="btn btn-primary btn-sm mr-2 float-right">Reservate</a>
 
-        <h4>Type: {{ $room->type->name }}</h4>
-        <h4> Address: {{ $room->address }} </h4>
-        <p>{{ $room->description }}</p>
-        <h3>Price: {{ $room->prize }} $ </p>
-        
-        @include('public.rooms.partials.buttons')
-        <a href="/reservations/create" class="btn btn-primary btn-sm mr-2 float-right">Reservate</a>
-
-       
-    </div>
+   
 
 </div>
 
 @endsection
+
+@push('scripts')
+    <script src="{{ mix('js/elements/elements.js') }}" defer></script>
+@endpush
+
+@push('styles')
+    <link href="{{ mix('css/validations.css') }}" rel="stylesheet">
+@endpush

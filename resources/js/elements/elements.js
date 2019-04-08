@@ -5,15 +5,31 @@ $(function(){
         createRoomAjax();
     });
 
+    $('#formEdit').submit(function(event){
+        event.preventDefault();
+        editRoomAjax();
+    })
+
     $('#theModal').on('show.bs.modal', function (event) {
         $('#theSpinner').addClass('theSpinner');
     });
 
-    $('button[data-acction="delete"]').click(function(event){
+    $('button[data-action="delete"]').click(function(event){
         event.preventDefault();
-        $('#sureDeleteButton').attr('data-id-room') = $(event.target).attr('data-id-room');
+        $('#sureDeleteButton').attr('data-id-room', $(event.target).attr('data-id-room'));
         showDeleteModal();
     });
+
+    $('#sureDeleteButton').click(function(event){
+        event.preventDefault();
+        deleteRoomAjax();
+
+    });
+
+    $('button[data-action="show"]').click(function(event){
+        event.preventDefault();
+        showRoomAjax();
+    })
 
 });
 
@@ -21,14 +37,16 @@ function createRoomAjax(){
 
     let createForm = $('#formCreate').serialize();
 
-    showModal()
+    showModal();
 
     axios.post('/rooms/createAjax', createForm)
     .then(function(response){
         showSuccessModal('Create');
-        createForm.submit();
+        // $('#formCreate').trigger('reset');
+        document.getElementById('formCreate').reset();
     })
     .catch(function(error){
+        console.log(error);
         showErrorModal();
     })
     .then(function(response){
@@ -37,15 +55,19 @@ function createRoomAjax(){
 }
 
 function editRoomAjax(){
+
+    let idRoomEdit = $('#editButton').attr('data-id-room');
+
     let editForm = $('#formEdit').serialize();
 
     showModal();
 
-    axios.put('/rooms/edit/editAjax', editForm)
+    axios.put(`/rooms/${idRoomEdit}/edit/roomEdit`, editForm)
     .then(function(response){
         showSuccessModal('Edit');
     })
     .catch(function(error){
+        console.log(error);
         showErrorModal();
     })
     .then(function(response){
@@ -55,15 +77,47 @@ function editRoomAjax(){
 
 function deleteRoomAjax(){
 
-    axios.delete('room/index/deleteAjax')
+    let idRoom = $('#sureDeleteButton').attr('data-id-room');
+
+    showModal();
+
+    axios.delete(`rooms/${idRoom}/roomDelete`)
     .then(function(response){
         showElementDeletedModal();
+        let room = $(`div[data-id-room='${idRoom}']`);
+        room.hide(2000, function(){
+            room.remove();
+        });
     })
-
     .catch(function(error){
         showErrorModal();
-    });
+    })
+    .then(function(response){
+        hideModal();
+    })
 
+}
+
+function showRoomAjax(){
+
+    let idRoom = $('button[data-action="show"]').attr('data-id-room');
+    
+    showModal();
+
+    axios.get(`rooms/${idRoom}/roomShow`)
+    .then(function(response){
+        
+        $('#showModalBody').html(response.data);
+
+        $('#showElementModal').modal('show');
+        
+    })
+    .catch(function(error){
+        showErrorModal()
+    })
+    .then(function(response){
+        hideModal();
+    });
 }
 
 function showModal(){

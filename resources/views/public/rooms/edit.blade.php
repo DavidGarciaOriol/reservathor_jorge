@@ -6,7 +6,7 @@
 
 <h1>Edit Room</h1>
 
-<form action="/rooms/{{ $room->id }}" method="post" enctype="multipart/form-data" novalidate>
+<form id="formEdit" action="/rooms/{{ $room->id }}" method="post" enctype="multipart/form-data" novalidate>
 
     @csrf
 
@@ -14,7 +14,7 @@
 
     @include('public.rooms.partials.form')
 
-    <button type="submit" class="btn btn-primary">Update Room</button>
+    <button id="editButton" data-id-room="{{ $room->id }}" class="btn btn-primary">Update Room</button>
 
 </form>
 
@@ -37,3 +37,11 @@
 </div>
 
 @endsection
+
+@push('scripts')
+    <script src="{{ mix('js/elements/elements.js') }}" defer></script>
+@endpush
+
+@push('styles')
+    <link href="{{ mix('css/validations.css') }}" rel="stylesheet">
+@endpush

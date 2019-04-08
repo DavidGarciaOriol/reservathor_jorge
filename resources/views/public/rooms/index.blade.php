@@ -10,7 +10,7 @@
     </div>
 
     @forelse($rooms as $room)
-    <div class="room-card card mb-2">
+    <div data-id-room="{{ $room->id }}" class="room-card card mb-2">
         <div class="card-header">
             {{ $room->title }}
         </div>
@@ -30,7 +30,7 @@
 
                     @include('public.rooms.partials.buttons')
 
-                    <a href="/rooms/{{ $room->slug }}" class="btn btn-primary btn-sm mr-2 float-right">View Room</a>
+                    <button data-id-room="{{ $room->id }}" data-action="show" class="btn btn-primary btn-sm mr-2 float-right">View Room</button>
                 </div>
             </div>
       </div>
@@ -85,6 +85,32 @@
   </div>
 </div>
 
+<div id="showElementModal" class="modal" data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Info</h5>
+      </div>
+      <div id="showModalBody" class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fade</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@include('public.rooms.partials.modal')
 
 
 @endsection
+
+@push('scripts')
+    <script src="{{ mix('js/elements/elements.js') }}" defer></script>
+@endpush
+
+@push('styles')
+    <link href="{{ mix('css/validations.css') }}" rel="stylesheet">
+@endpush

@@ -25,7 +25,7 @@
         <h5 class="modal-title">Status</h5>
       </div>
       <div class="modal-body">
-        <p>ELemento creado satisfactoriamente.</p>
+        <p>Elemento creado satisfactoriamente.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Accept</button>

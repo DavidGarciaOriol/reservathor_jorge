@@ -17,5 +17,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/{user}/rooms', 'UserRoomController@index')->name('userrooms.index');
 
 Route::post('/rooms/createAjax', 'RoomController@createAjax');
-Route::put('/roomsEdit', 'RoomsController@editAjax');
-Route::delete('/roomsDelete', 'RoomsController@deleteAjax');
+Route::put('/rooms/{room}/edit/roomEdit', 'RoomController@editAjax');
+Route::delete('/rooms/{room}/roomDelete', 'RoomController@deleteAjax');
+Route::get('/rooms/{room}/roomShow', 'RoomController@showAjax');
