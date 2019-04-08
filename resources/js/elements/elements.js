@@ -28,7 +28,7 @@ $(function(){
 
     $('button[data-action="show"]').click(function(event){
         event.preventDefault();
-        showRoomAjax();
+        showRoomAjax($(event.target));
     })
 
 });
@@ -98,10 +98,10 @@ function deleteRoomAjax(){
 
 }
 
-function showRoomAjax(){
+function showRoomAjax(boton){
 
-    let idRoom = $('button[data-action="show"]').attr('data-id-room');
-    
+    let idRoom = (boton).attr('data-id-room');
+
     showModal();
 
     axios.get(`rooms/${idRoom}/roomShow`)
@@ -110,7 +110,7 @@ function showRoomAjax(){
         $('#showModalBody').html(response.data);
 
         $('#showElementModal').modal('show');
-        
+
     })
     .catch(function(error){
         showErrorModal()

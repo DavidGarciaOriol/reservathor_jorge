@@ -11,7 +11,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        return view('public.pages.index');
+      return view('public.pages.index');
     }
     public function contact()
     {
@@ -20,5 +20,9 @@ class PagesController extends Controller
     public function about()
     {
       return view('public.pages.about');
+    }
+    public function profile()
+    {
+      return view('public.pages.profile');
     }
 }

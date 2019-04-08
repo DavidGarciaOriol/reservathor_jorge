@@ -116,7 +116,7 @@ $(function () {
   });
   $('button[data-action="show"]').click(function (event) {
     event.preventDefault();
-    showRoomAjax();
+    showRoomAjax($(event.target));
   });
 });
 
@@ -165,8 +165,8 @@ function deleteRoomAjax() {
   });
 }
 
-function showRoomAjax() {
-  var idRoom = $('button[data-action="show"]').attr('data-id-room');
+function showRoomAjax(boton) {
+  var idRoom = boton.attr('data-id-room');
   showModal();
   axios.get("rooms/".concat(idRoom, "/roomShow")).then(function (response) {
     $('#showModalBody').html(response.data);

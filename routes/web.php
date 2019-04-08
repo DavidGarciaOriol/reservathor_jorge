@@ -3,6 +3,7 @@
 Route::get('/', 'PagesController@index')->name('root');
 Route::get('/contact', 'PagesController@contact')->name('contact')->middleware('auth');
 Route::get('/about', 'PagesController@about')->name('about');
+Route::get('/profile', 'PagesController@profile')->name('profile')->middleware('auth');
 
 Route::resource('/rooms', 'RoomController');
 Route::resource('/types', 'TypeController');
