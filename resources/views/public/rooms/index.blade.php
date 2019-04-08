@@ -42,4 +42,49 @@
     <div class="d-flex justify-content-center">
         {{ $rooms->links() }}
     </div>
+
+    <!-- =/=/=/=/=/=/=/=/==/=/=/=/=/==/=/=/=/=/== -->
+
+<div id="deleteModal" class="modal" data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Element</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you'd like to delete this element? <br>
+        It'll be deleted forever (a looong time)!</p>
+      </div>
+      <div class="modal-footer">
+        <form action="/rooms/{{ $room->id }}" method="post" class="mr-2 float-right">
+        @csrf
+        @method('delete')
+            <button id="sureDeleteButton" type="button" data-id-room="" class="btn btn-danger" data-dismiss="modal">Sure, delete it!</button>
+        </form>        
+        <button id="thoughTwiceButton" type="button" class="btn btn-secondary" data-dismiss="modal">I've though it better.</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="elementDeletedModal" class="modal" data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Element</h5>
+      </div>
+      <div class="modal-body">
+        <p>The Element has been deleted.</p>
+      </div>
+      <div class="modal-footer">
+    
+        <button id="thoughTwiceButton" type="button" class="btn btn-secondary" data-dismiss="modal">Accept.</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 @endsection

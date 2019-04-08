@@ -142,10 +142,15 @@ class RoomController extends Controller
   }
 
     public function createAjax(RoomRequest $request){
+        sleep(3);
+    }
 
-        sleep(5);
-        return 'OBJETO CREADO';
+    public function editAjax(RoomRequest $request){
+        sleep(3);
+    }
 
+    public function deleteAjax(){
+        sleep(3);
     }
 
 }
