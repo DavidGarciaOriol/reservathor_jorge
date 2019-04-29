@@ -118,6 +118,19 @@ $(function () {
     event.preventDefault();
     showRoomAjax($(event.target));
   });
+  $('#profilenavbutton').click(function (event) {
+    event.preventDefault();
+    showProfileAjax();
+  });
+  $('#passnavbutton').click(function (event) {
+    event.preventDefault();
+    showPassAjax();
+  });
+  $('#favnavbutton').click(function (event) {
+    event.preventDefault();
+    showFavAjax();
+  });
+  associateButtons();
 });
 
 function createRoomAjax() {
@@ -178,6 +191,57 @@ function showRoomAjax(boton) {
   });
 }
 
+function showProfileAjax() {
+  showModal();
+  axios.get("pages/partials/showProfile").then(function (response) {
+    $('#profile_content').html(response.data);
+    associateButtons();
+  }).catch(function (error) {
+    console.log(error);
+    showErrorModal();
+  }).then(function (response) {
+    hideModal();
+  });
+}
+
+function showPassAjax() {
+  showModal();
+  axios.get("pages/partials/showPass").then(function (response) {
+    $('#profile_content').html(response.data);
+    associateButtons();
+  }).catch(function (error) {
+    console.log(error);
+    showErrorModal();
+  }).then(function (response) {
+    hideModal();
+  });
+}
+
+function showFavAjax() {
+  showModal();
+  axios.get("pages/partials/showFav").then(function (response) {
+    $('#profile_content').html(response.data);
+    associateButtons();
+  }).catch(function (error) {
+    console.log(error);
+    showErrorModal();
+  }).then(function (response) {
+    hideModal();
+  });
+}
+
+function showInfoProfile() {
+  alert('Estás en la configuración del Perfil');
+}
+
+function showInfoPass() {
+  alert('Estás en la configuración de Contraseña');
+}
+
+function showInfoFav() {
+  alert('Estás en la configuración de Favoritos');
+}
+
 function showModal() {
   $('#theModal').modal('show');
 }
@@ -201,6 +265,21 @@ function showDeleteModal() {
 
 function showElementDeletedModal() {
   $('#elementDeletedModal').modal('show');
+}
+
+function associateButtons() {
+  $('#infoProfile').click(function (event) {
+    event.preventDefault();
+    showInfoProfile();
+  });
+  $('#infoPass').click(function (event) {
+    event.preventDefault();
+    showInfoPass();
+  });
+  $('#infoFav').click(function (event) {
+    event.preventDefault();
+    showInfoFav();
+  });
 }
 
 /***/ }),

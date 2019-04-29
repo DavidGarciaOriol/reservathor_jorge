@@ -25,4 +25,14 @@ class PagesController extends Controller
     {
       return view('public.pages.profile');
     }
+
+    public function showProfileAjax(){
+      return view('public.pages.partials.profile');
+    }
+    public function showPassAjax(){
+      return view('public.pages.partials.pass');
+    }
+    public function showFavAjax(){
+      return view('public.pages.partials.fav');
+    }
 }
