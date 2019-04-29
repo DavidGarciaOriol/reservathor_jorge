@@ -5,6 +5,34 @@
 @section('content')
 <h1>Room List</h1>
 
+  <form>
+
+    <div class="d-flex mb-4 col-3">
+      
+      <input id="searchForm" class="form-control" type="text" placeholder="Search" aria-label="Search">  
+      
+      <div class="form-group mb-4 col-12">
+        
+        <select class="form-control" id="typeSearch">
+          <option selected> - Type - </option>
+          <option>Jazmin Greenfelder</option>
+          <option>Rebecca Kuvalis</option>
+          <option>Madeline Schmitt</option>
+          <option>Helena Bode</option>
+          <option>Dariana Kertzmann PhD</option>
+          <option>Brandyn Bernhard</option>
+          <option>Mia Schmitt</option>
+          <option>Adam O'Conner</option>
+        </select>
+
+      </div>
+
+    </div>
+
+  </form>
+
+    
+
     <div class="d-flex justify-content-center">
         {{ $rooms->links() }}
     </div>
