@@ -5,17 +5,17 @@
 @section('content')
 <h1>Room List</h1>
 
-  <form>
+  <form id="search_form">
 
     <div class="d-flex mb-4 col-3">
-      
-      <input id="searchForm" class="form-control" type="text" placeholder="Search" aria-label="Search">  
-      
+
+      <input id="searchInput" name="inputSearch" class="form-control" type="text" placeholder="Search" aria-label="Search">  
+
       <div class="form-group mb-4 col-12">
         
-        <select class="form-control" id="typeSearch">
-          <option selected> - Type - </option>
-          <option>Jazmin Greenfelder</option>
+        <select id="searchType" name="selectSearch" class="form-control" id="typeSearch">
+          <option value="" selected> - Type - </option>
+          <option >Jazmin Greenfelder</option>
           <option>Rebecca Kuvalis</option>
           <option>Madeline Schmitt</option>
           <option>Helena Bode</option>
@@ -27,51 +27,36 @@
 
       </div>
 
+      <div class="form-check mb-4 col-12">
+
+        <input name="checkSearch" class="form-check-input" type="checkbox" value="" id="searchCheck">
+
+        <label id="searchCheckLabel" class="form-check-label" for="searchCheck">
+          Filter by lowest price.
+        </label>
+
+      </div>
+
+      <div class="form-check mb-4 col-12">
+
+        <input name="checkSearch2" class="form-check-input" type="checkbox" value="" id="searchCheck2">
+
+        <label id="searchCheckLabel2" class="form-check-label" for="searchCheck2">
+          Skip owned rooms.
+        </label>
+
+      </div>
+
     </div>
 
   </form>
 
-    
+  <div id="theIndex">
+    @include('public.rooms.partials.partialSearch')
+  </div>
+  
 
-    <div class="d-flex justify-content-center">
-        {{ $rooms->links() }}
-    </div>
-
-    @forelse($rooms as $room)
-    <div data-id-room="{{ $room->id }}" class="room-card card mb-2">
-        <div class="card-header">
-            {{ $room->title }}
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-2">
-                    <img class="img-fluid" src="http://reservathor.test/storage/{{ $room->portrait }}" alt="">
-                </div>
-                
-                <div class="col">
-
-                    <h5 class="card-title">User: <a href="{{ route('userrooms.index', $room->user->slug) }}" title="{{ $room->user->name }}'s room list">{{ $room->user->name }}</a></h5>
-
-                    <h6 class="card-subtitle mb-2 text-muted">Type: {{ $room->type->name }}</h6>
-                    <p class="card-text">{{ str_limit($room->description, 300) }}</p>
-                    <h4> {{ $room->prize }}$ </h4>
-
-                    @include('public.rooms.partials.buttons')
-
-                    <button data-id-room="{{ $room->id }}" data-action="show" class="btn btn-primary btn-sm mr-2 float-right">View Room</button>
-                </div>
-            </div>
-      </div>
-    </div>
-    @empty
-      <p>There's no Rooms to show.</p>
-    @endforelse
-
-    <div class="d-flex justify-content-center">
-        {{ $rooms->links() }}
-    </div>
-
-    <!-- =/=/=/=/=/=/=/=/==/=/=/=/=/==/=/=/=/=/== -->
+    <!-- =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= -->
 
 <div id="deleteModal" class="modal" data-backdrop="static" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -84,7 +69,7 @@
         It'll be deleted forever (a looong time)!</p>
       </div>
       <div class="modal-footer">
-        <form action="/rooms/{{ $room->id }}" method="post" class="mr-2 float-right">
+        <form action="/rooms/" method="post" class="mr-2 float-right">
         @csrf
         @method('delete')
             <button id="sureDeleteButton" type="button" data-id-room="" class="btn btn-danger" data-dismiss="modal">Sure, delete it!</button>

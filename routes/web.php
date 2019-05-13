@@ -26,6 +26,8 @@ Route::get('pages/partials/showProfile', 'PagesController@showProfileAjax');
 Route::get('pages/partials/showPass', 'PagesController@showPassAjax');
 Route::get('pages/partials/showFav', 'PagesController@showFavAjax');
 
+Route::post('/rooms/searchAjax', 'RoomController@searchAjax');
+
 // Route::post('pages/profile/infoProfile', 'PagesController@infoProfileAjax');
 // Route::post('pages/profile/infoPass', 'PagesController@infoPassAjax');
 // Route::post('pages/profile/infoFav', 'PagesController@infoFavAjax');

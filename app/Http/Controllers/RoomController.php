@@ -143,7 +143,7 @@ class RoomController extends Controller
 
     public function createAjax(RoomRequest $request){
     
-        sleep(3);
+        
 
         $portrait = $request->file('portrait');
 
@@ -161,7 +161,7 @@ class RoomController extends Controller
 
     public function editAjax($idRoom, RoomRequest $request){
 
-        sleep(3);
+        
 
         $portrait = $request->file('portrait');
 
@@ -186,7 +186,7 @@ class RoomController extends Controller
 
     public function deleteAjax($roomId){
 
-        sleep(3);
+        
         
         $room = Room::where('id', $roomId)->firstOrFail();
 
@@ -199,10 +199,36 @@ class RoomController extends Controller
 
     public function showAjax($roomId){
 
-        sleep(3);
-    
         $room = Room::where('id', $roomId)->firstOrFail();
         return view('public.rooms.partials.partialShow', ['room' => $room]);
+    }
+
+    public function searchAjax(Request $request){
+
+        
+        $input = request('inputSearch');
+        $select = request('selectSearch');
+        $checkbox = request('checkSearch');
+        $checkbox2 = request('checkSearch2');
+
+        if(!($input==""&&$select=="" &&isset($checkbox)&&isset($checkbox2))){
+            $rooms =  DB::table('rooms');
+            if($input != ""){
+                $rooms = $rooms->where('title', $input);
+            }
+
+            if($select != ""){
+                $rooms = $rooms->where('type', $select);    
+            }
+
+
+            $rooms = Room::where('title', $input)->where('type', $select)->paginate(8);
+            $response = view('public.rooms.partials.partialSearch')->withRooms($rooms);
+        } else {
+            $response = $rooms = Room::latest()->paginate(8);
+        }
+
+        return $response;
     }
 
 }

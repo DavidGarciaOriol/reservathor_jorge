@@ -48,7 +48,53 @@ $(function(){
 
     associateButtons(); 
 
+    $('#searchInput').keyup(function(event){
+        event.preventDefault();
+        setTimeout(() => {
+            searchAjax();
+        }, 300);
+
+        
+
+    });
+    
+    $('#searchType').change(function(event){
+        event.preventDefault();
+        searchAjax();
+    })
+
+    $('#searchCheck').change(function(event){
+        event.preventDefault();
+        searchAjax();
+    });
+
+    $('#searchCheck2').change(function(event){
+        event.preventDefault();
+        searchAjax();
+    })
+
 });
+
+function searchAjax(){
+
+    let searchFormSerialized = $('#search_form').serialize();
+
+    showModal();
+
+    axios.post('/rooms/searchAjax', searchFormSerialized)
+    .then(function(response){
+        $('#theIndex').html(response.data);
+    })
+    .catch(function(error){
+        console.log(error);
+        showErrorModal();
+    })
+    .then(function(response){
+        hideModal();
+        
+    })
+
+}
 
 function createRoomAjax(){
 
