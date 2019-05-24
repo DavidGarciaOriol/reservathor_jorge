@@ -75,6 +75,7 @@ $(function(){
         if((window.innerHeight + window.scrollY) >= document.body.scrollHeight){
             $('#theSpinner2').addClass('theSpinner');
             paginateAjax();
+            associateButtons();
         }
     });
 
@@ -112,7 +113,7 @@ function paginateAjax(){
     axios.get(`/rooms/paginateAjax/${counter}`)
     .then(function(response){
         $('#theIndex').append(response.data);
-        associateButtons();
+        
 
     })
     .catch(function(error){
