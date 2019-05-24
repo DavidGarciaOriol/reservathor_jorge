@@ -9,27 +9,27 @@
 
     <div class="d-flex mb-4 col-3">
 
-      <input id="searchInput" name="inputSearch" class="form-control" type="text" placeholder="Search" aria-label="Search">  
+      <input id="searchInput" name="searchInput" class="form-control" type="text" placeholder="Search" aria-label="Search">  
 
       <div class="form-group mb-4 col-12">
         
-        <select id="searchType" name="selectSearch" class="form-control" id="typeSearch">
+        <select id="searchType" name="searchType" class="form-control">
           <option value="" selected> - Type - </option>
-          <option >Jazmin Greenfelder</option>
-          <option>Rebecca Kuvalis</option>
-          <option>Madeline Schmitt</option>
-          <option>Helena Bode</option>
-          <option>Dariana Kertzmann PhD</option>
-          <option>Brandyn Bernhard</option>
-          <option>Mia Schmitt</option>
-          <option>Adam O'Conner</option>
+          <option value="1">Jazmin Greenfelder</option>
+          <option value="2">Rebecca Kuvalis</option>
+          <option value="3">Madeline Schmitt</option>
+          <option value="4">Helena Bode</option>
+          <option value="5">Dariana Kertzmann PhD</option>
+          <option value="6">Brandyn Bernhard</option>
+          <option value="7">Mia Schmitt</option>
+          <option value="8">Adam O'Conner</option>
         </select>
 
       </div>
 
       <div class="form-check mb-4 col-12">
 
-        <input name="checkSearch" class="form-check-input" type="checkbox" value="" id="searchCheck">
+        <input name="searchCheck" class="form-check-input" type="checkbox" value="1" id="searchCheck">
 
         <label id="searchCheckLabel" class="form-check-label" for="searchCheck">
           Filter by lowest price.
@@ -39,10 +39,10 @@
 
       <div class="form-check mb-4 col-12">
 
-        <input name="checkSearch2" class="form-check-input" type="checkbox" value="" id="searchCheck2">
+        <input name="searchCheck2" class="form-check-input" type="checkbox" value="2" id="searchCheck2">
 
         <label id="searchCheckLabel2" class="form-check-label" for="searchCheck2">
-          Skip owned rooms.
+          Filter by room title.
         </label>
 
       </div>
@@ -52,8 +52,9 @@
   </form>
 
   <div id="theIndex">
-    @include('public.rooms.partials.partialSearch')
+    @include('public.rooms.partials.partialPaginate')
   </div>
+  
   
 
     <!-- =/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/= -->
@@ -113,6 +114,8 @@
     </div>
   </div>
 </div>
+
+<div id="theSpinner2"> </div>
 
 
 @include('public.rooms.partials.modal')

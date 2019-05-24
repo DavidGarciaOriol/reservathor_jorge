@@ -53,9 +53,6 @@ $(function(){
         setTimeout(() => {
             searchAjax();
         }, 300);
-
-        
-
     });
     
     $('#searchType').change(function(event){
@@ -71,7 +68,15 @@ $(function(){
     $('#searchCheck2').change(function(event){
         event.preventDefault();
         searchAjax();
-    })
+    });
+
+    
+    $(window).scroll(function() { 
+        if((window.innerHeight + window.scrollY) >= document.body.scrollHeight){
+            $('#theSpinner2').addClass('theSpinner');
+            paginateAjax();
+        }
+    });
 
 });
 
@@ -92,9 +97,35 @@ function searchAjax(){
     .then(function(response){
         hideModal();
         
-    })
+        
+    });
 
 }
+
+
+function paginateAjax(){
+
+    // $('#theIndex').append(spinner);
+
+    counter = $("div[data-id-room]").length;
+
+    axios.get(`/rooms/paginateAjax/${counter}`)
+    .then(function(response){
+        $('#theIndex').append(response.data);
+        associateButtons();
+
+    })
+    .catch(function(error){
+        console.log(error);
+        showErrorModal();
+    })
+    .then(function(response){
+        $('#theSpinner2').removeClass('theSpinner');
+    });
+
+}
+
+
 
 function createRoomAjax(){
 

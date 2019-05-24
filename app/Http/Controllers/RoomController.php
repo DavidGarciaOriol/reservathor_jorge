@@ -6,10 +6,12 @@ use App\Room;
 use App\Type;
 use App\User;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\RoomRequest;
 use App\Notifications\RoomCreated;
+
 
 class RoomController extends Controller
 {
@@ -206,29 +208,62 @@ class RoomController extends Controller
     public function searchAjax(Request $request){
 
         
-        $input = request('inputSearch');
-        $select = request('selectSearch');
-        $checkbox = request('checkSearch');
-        $checkbox2 = request('checkSearch2');
+        $searchInput = request('searchInput');
+        $searchType = request('searchType');
+        $searchCheck = request('searchCheck');
+        $searchCheck2 = request('searchCheck2');
 
-        if(!($input==""&&$select=="" &&isset($checkbox)&&isset($checkbox2))){
-            $rooms =  DB::table('rooms');
-            if($input != ""){
-                $rooms = $rooms->where('title', $input);
+        // echo "searchInput:".intval(($searchInput==""))."<br>";
+        // echo "searchType:".intval(($searchType==""))."<br>";
+        // echo "searchCheck:".intval(!isset($searchCheck))."<br>";
+        // echo "searchCheck2:".intval(!isset($searchCheck2))."<br><br>";
+
+        // echo "CONDICION:". intval($searchInput!=""||$searchType!=""||isset($searchCheck)||isset($searchCheck2));
+
+        if($searchInput!=""||$searchType!=""||isset($searchCheck)||isset($searchCheck2)){
+
+            $rooms =  Room::query();
+
+            if($searchInput != ""){
+                $rooms = $rooms->where('title', 'like', "%$searchInput%");
             }
 
-            if($select != ""){
-                $rooms = $rooms->where('type', $select);    
+            if($searchType != ""){
+                $rooms = $rooms->where('type_id', $searchType);    
             }
 
+            if(isset($searchCheck)){
+                $rooms = $rooms->orderBy('prize', 'asc');
+            }
 
-            $rooms = Room::where('title', $input)->where('type', $select)->paginate(8);
-            $response = view('public.rooms.partials.partialSearch')->withRooms($rooms);
+            if(isset($searchCheck2)){
+                $rooms = $rooms->orderBy('title', 'asc');
+            }
+
+            $roomsPaginadas = $rooms->paginate(8);
+            
         } else {
-            $response = $rooms = Room::latest()->paginate(8);
+            $roomsPaginadas = $rooms = Room::latest()->paginate(8);
         }
 
-        return $response;
+        return view('public.rooms.partials.partialSearch')->withRooms($roomsPaginadas);
+    }
+
+    function paginateAjax($counter){
+
+        sleep(1);
+
+        $rooms = Room::query()
+            ->offset($counter)
+            ->limit(8)
+            ->get();
+
+        return view('public.rooms.partials.partialPaginate')->withRooms($rooms);
+        
+    }
+
+    function validateAjax(RoomAjaxRequest $request){
+
     }
 
 }

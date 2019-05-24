@@ -149,6 +149,12 @@ $(function () {
     event.preventDefault();
     searchAjax();
   });
+  $(window).scroll(function () {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      $('#theSpinner2').addClass('theSpinner');
+      paginateAjax();
+    }
+  });
 });
 
 function searchAjax() {
@@ -161,6 +167,20 @@ function searchAjax() {
     showErrorModal();
   }).then(function (response) {
     hideModal();
+  });
+}
+
+function paginateAjax() {
+  // $('#theIndex').append(spinner);
+  counter = $("div[data-id-room]").length;
+  axios.get("/rooms/paginateAjax/".concat(counter)).then(function (response) {
+    $('#theIndex').append(response.data);
+    associateButtons();
+  }).catch(function (error) {
+    console.log(error);
+    showErrorModal();
+  }).then(function (response) {
+    $('#theSpinner2').removeClass('theSpinner');
   });
 }
 
