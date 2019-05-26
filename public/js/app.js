@@ -48898,9 +48898,9 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nndavid/Sites/reservathorjorge/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/nndavid/Sites/reservathorjorge/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/nndavid/Sites/reservathorjorge/resources/sass/validations.scss */"./resources/sass/validations.scss");
+__webpack_require__(/*! /home/nndavid/Sites/reservathor_jorge/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/nndavid/Sites/reservathor_jorge/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/nndavid/Sites/reservathor_jorge/resources/sass/validations.scss */"./resources/sass/validations.scss");
 
 
 /***/ })

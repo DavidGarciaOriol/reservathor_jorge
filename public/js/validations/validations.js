@@ -316,7 +316,7 @@ function addErrorsToErrorsDiv(type, errors) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/nndavid/Sites/reservathorjorge/resources/js/validations/validations.js */"./resources/js/validations/validations.js");
+module.exports = __webpack_require__(/*! /home/nndavid/Sites/reservathor_jorge/resources/js/validations/validations.js */"./resources/js/validations/validations.js");
 
 
 /***/ })

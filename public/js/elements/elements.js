@@ -342,7 +342,7 @@ function associateButtons() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/nndavid/Sites/reservathorjorge/resources/js/elements/elements.js */"./resources/js/elements/elements.js");
+module.exports = __webpack_require__(/*! /home/nndavid/Sites/reservathor_jorge/resources/js/elements/elements.js */"./resources/js/elements/elements.js");
 
 
 /***/ })
